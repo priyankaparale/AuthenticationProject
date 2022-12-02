@@ -5,35 +5,19 @@ import './SignUp1.css'
 
 const SignUp1 = () => {
 
-    // const [signup, setsignUp] = useState({
-    //     fullname: "",
-    //     email: "",
-    //     password: "",
-    //     confirmpassword: ""
-    // });
-
-    // let name, value;
-    // const handleInput = (e) => {
-    //     name = e.target.name;
-    //     value = e.target.value;
-    //     console.log(name, value);
-
-    //     setsignUp({ ...signup, [name]: value });
-    // }
-
     const [fullname, setfullname] = useState('')
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [confirmpassword, setconfirmpassword] = useState('')
     //getting userdetails
-    const username = localStorage.getItem('fullname')?
-    localStorage.getItem('fullname') : 'adminname'
+    // const username = localStorage.getItem('fullname')?
+    // localStorage.getItem('fullname') : 'adminname'
 
-    const useremail = localStorage.getItem('email')?
-    localStorage.getItem('email') : 'admin@123'
+    // const useremail = localStorage.getItem('email')?
+    // localStorage.getItem('email') : 'admin@123'
 
-    const userpassword = localStorage.getItem('password')?
-    localStorage.getItem('password') : '123'
+    // const userpassword = localStorage.getItem('password')?
+    // localStorage.getItem('password') : '123'
 
     const navigate = useNavigate()
 
@@ -76,28 +60,30 @@ const SignUp1 = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(fullname === username && email===useremail && password === userpassword){
-            toast.success('Sign up successsfull.')
-            navigate('/profile')
-        }else{
-            toast.error("Invalid details.")
-        }
-
-        // if(fullname === ""){
-        //     toast.error("Name is required")
-        // }else if(email === " "){
-        //     toast.error("email is required")
-        // }else if(password === " "){
-        //     toast.error("password is required")
-        // }else if(confirmpassword === " "){
-        //     toast.error("confirm password is required")
+        // if(fullname === username && email===useremail && password === userpassword){
+        //     toast.success('Sign up successsfull.')
+        //     navigate('/profile')
         // }else{
-        //     localStorage.setItem('fullname', fullname)
-        //     localStorage.setItem('email', email)
-        //     localStorage.setItem('password', password)
-        //     localStorage.setItem('confirmpassword', confirmpassword)
-        //     toast.success("UserDetails saved!")
+        //     toast.error("Invalid details.")
         // }
+
+        if(fullname === ""){
+            toast.error("Name is required")
+        }else if(email === " "){
+            toast.error("email is required")
+        }else if(password === " "){
+            toast.error("password is required")
+        }else if(confirmpassword === " "){
+            toast.error("confirm password is required")
+        }else{
+            localStorage.setItem("token", "qwefhtnhjtdwert")
+            localStorage.setItem('fullname', fullname)
+            localStorage.setItem('email', email)
+            localStorage.setItem('password', password)
+            localStorage.setItem('confirmpassword', confirmpassword)
+            toast.success("UserDetails saved!")
+            navigate('/profile')
+        }
 
     }
 

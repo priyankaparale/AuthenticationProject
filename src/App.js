@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarComponent from './components/Navbar'
@@ -24,17 +24,17 @@ const App = () => {
 	<BrowserRouter>
       <div className="App">
 		<NavbarComponent />
-			<Switch>
-				<Route exact path='/'>
-					<SignUp1/>
-				</Route>						
-				<Route path='/signup'>
-					<SignUp1/>
-				</Route>
-				<Route path='/profile'>
-					<Profile />
-				</Route>
-			</Switch>
+			{/* <Switch> */}
+			<Routes>
+				<Route exact path='/' element={<SignUp1/>}/>	
+			</Routes>
+			<Routes>					
+				<Route path='/signup' element={<SignUp1/>}/>
+			</Routes>
+			<Routes>
+				<Route path='/profile' element={<Profile />}/>				
+			</Routes>
+			{/* </Switch> */}
       </div>
 	</BrowserRouter>
 	</>
