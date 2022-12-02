@@ -29,6 +29,9 @@ const App = () => {
 				<Route exact path='/' element={<SignUp1/>}/>	
 			</Routes>
 			<Routes>					
+				<Route path='/header' element={<SignUp1/>}/>
+			</Routes>
+			<Routes>					
 				<Route path='/signup' element={<SignUp1/>}/>
 			</Routes>
 			<Routes>

@@ -71,19 +71,10 @@ const SignUp1 = () => {
 		const { fullName, email, password, confirmPassword } = userDetails
 
 
-            if(userDetails !== " "){
-                localStorage.setItem("token", "qwefhtnhjtdwert")
-                localStorage.setItem('fullName', fullName)
-                localStorage.setItem('email', email)
-                localStorage.setItem('password', password)
-                localStorage.setItem('confirmPassword', confirmPassword)
-                    
-                navigate('/profile')
-            }
-
-
-
-
+        if(userDetails !== " "){
+            localStorage.setItem("token", "qwefhtnhjtdwert")
+            navigate('/profile')
+        }
 
 		if(fullName.length <= 4) {
 			setError((previousError) => ({
@@ -93,8 +84,9 @@ const SignUp1 = () => {
 		} else {
 			setError((previousError) => ({
 				...previousError,
-				fullName: true
+				fullName: true,
 			}))
+            localStorage.setItem('fullName', fullName)
 		}
 	
 		if (
@@ -112,9 +104,10 @@ const SignUp1 = () => {
 				...previousError,
 				email: true
 			}))
+            localStorage.setItem('email', email)
 		}	
 	
-		// let password = parseInt(password)
+		// password = parseInt(password)
 		if(password.length === 6 && !isNaN(password)) {
 			setError((previousError) => ({
 				...previousError,
@@ -125,6 +118,7 @@ const SignUp1 = () => {
 				...previousError,
 				password: true
 			}))
+            localStorage.setItem('password', password)
 		}
 
         if(confirmPassword.length === password && !isNaN(confirmPassword)) {
@@ -137,18 +131,14 @@ const SignUp1 = () => {
 				...previousError,
 				confirmPassword: true
 			}))
+            localStorage.setItem('confirmPassword', confirmPassword)
 		}
-
-        if(submit && !Object.values(error).includes(false)){
-            navigate('/profile')
-        }
     }
   return (
     <>
     <div className="container login-container">
     <div className="login-form-1">
-    <h1>Signup</h1>
-        {/* <form action="" onSubmit={handleSubmit}> */}
+    <h1>Signup</h1><br></br>
         <form action="" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor='FullName'>FullName</label><br></br>
@@ -163,7 +153,7 @@ const SignUp1 = () => {
                 name="FullName" id='FullName'/>
                 {submit && !success && (error.fullName ? (
               <div type="invalid">
-                Please enter a valid email
+                Please enter a fullname
               </div>
             ) : (
               <div>Looks good!</div>
@@ -190,7 +180,7 @@ const SignUp1 = () => {
             </div>
             <div>
                 <label htmlFor='Password'>Password</label><br></br>
-                <input className="form-control"  type='text' placeholder='Password'  autoComplete='off' 
+                <input className="form-control"  type='password' placeholder='Password'  autoComplete='off' 
                 value={userDetails.password}
                 onChange={(e) =>
                   setUserDetails({
@@ -201,7 +191,7 @@ const SignUp1 = () => {
                 name="Password" id='Password'/>
                 {submit && !success && (error.password ? (
               <div type="invalid">
-                Please enter a valid passord
+                Please enter a valid password
               </div>
             ) : (
               <div>Looks good!</div>
@@ -209,7 +199,7 @@ const SignUp1 = () => {
             </div>
             <div>
                 <label htmlFor='ConfirmPassword'>Confirm Password</label><br></br>
-                <input className="form-control"  type='text' placeholder='Confirm Password'  autoComplete='off' 
+                <input className="form-control"  type='password' placeholder='Confirm Password'  autoComplete='off' 
                 value={userDetails.confirmPassword}
                 onChange={(e) =>
                   setUserDetails({

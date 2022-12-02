@@ -24,11 +24,11 @@ const Profile = () => {
               <div>
               <h4>
                     Password :{" "}
-                    {localStorage.getItem("password") ? localStorage.getItem("passord") : "NA"
+                    {localStorage.getItem("password") ? localStorage.getItem("password") : "NA"
                     }
                   </h4>
               </div>
-              <button className='btn' type='submit' onClick='{Logout}'> Logout</button>
+              <button className='btn' type='submit'> Logout</button>
       </div>
     </div>
     </>
