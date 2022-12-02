@@ -1,137 +1,232 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom' 
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 import './SignUp1.css'
 
 const SignUp1 = () => {
 
-    const [fullname, setfullname] = useState('')
-    const [email, setemail] = useState('')
-    const [password, setpassword] = useState('')
-    const [confirmpassword, setconfirmpassword] = useState('')
-    //getting userdetails
-    // const username = localStorage.getItem('fullname')?
-    // localStorage.getItem('fullname') : 'adminname'
+    // const [fullname, setfullname] = useState('')
+    // const [email, setemail] = useState('')
+    // const [password, setpassword] = useState('')
+    // const [confirmpassword, setconfirmpassword] = useState('')
 
-    // const useremail = localStorage.getItem('email')?
-    // localStorage.getItem('email') : 'admin@123'
-
-    // const userpassword = localStorage.getItem('password')?
-    // localStorage.getItem('password') : '123'
-
-    const navigate = useNavigate()
-
-    // const [userDetails, setUserDetails] = useState({
-	// 	fullName: '',		
-	// 	email: '',
-	// 	password: '',	
-    // confirmPassword: '',	
-	// })
-
-
-    // const [error, setError] = useState({
-	// 	fullName: false,
-	// 	email: false,		
-	// 	password: false,
-    //     confirmPassword: false,
-	// })
-	// const [submit, setSubmit] = useState(false)
-	// const [success, setSuccess] = useState(false)
-
-	// useEffect(() => {
-	// 	if(submit && !Object.values(error).includes(true)){
-	// 		setSuccess(true)
-	// 		setUserDetails({
-	// 			fullName: '',		
-    //             email: '',
-    //             password: '',
-    //             confirmPassword: '',
-	// 		})
-	// 	}
-	// }, [submit, error])
-
+    // const navigate = useNavigate()
 
     // const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	setSubmit(true)
+    //     e.preventDefault();
+
+    //     if(fullname === ""){
+    //         toast.error("Name is required")
+    //     }else if(email === " "){
+    //         toast.error("email is required")
+    //     }else if(password === " "){
+    //         toast.error("password is required")
+    //     }else if(confirmpassword === " "){
+    //         toast.error("confirm password is required")
+    //     }else{
+    //         localStorage.setItem("token", "qwefhtnhjtdwert")
+    //         localStorage.setItem('fullname', fullname)
+    //         localStorage.setItem('email', email)
+    //         localStorage.setItem('password', password)
+    //         localStorage.setItem('confirmpassword', confirmpassword)
+    //         toast.success("UserDetails saved!")
+    //         navigate('/profile')
+    //     }
+
     // }
 
+    const [userDetails, setUserDetails] = useState({
+		fullName: '',		
+		email: '',
+		password: '',	
+        confirmPassword: '',	
+	})
+	const [error, setError] = useState({
+		fullName: false,
+		email: false,		
+		password: false,
+        confirmPassword: false,
+	})
+	const [submit, setSubmit] = useState(false)
+	const [success, setSuccess] = useState(false)
 
+	useEffect(() => {
+		if(submit && !Object.values(error).includes(true)){
+			setSuccess(true)
+			setUserDetails({
+				fullName: '',		
+                email: '',
+                password: '',
+                confirmPassword: '',
+			})
+		}
+	}, [submit, error])
+
+    const navigate = useNavigate()
+	
     const handleSubmit = (e) => {
-        e.preventDefault();
+		e.preventDefault();
+		setSubmit(true)
 
-        // if(fullname === username && email===useremail && password === userpassword){
-        //     toast.success('Sign up successsfull.')
-        //     navigate('/profile')
-        // }else{
-        //     toast.error("Invalid details.")
-        // }
+		const { fullName, email, password, confirmPassword } = userDetails
 
-        if(fullname === ""){
-            toast.error("Name is required")
-        }else if(email === " "){
-            toast.error("email is required")
-        }else if(password === " "){
-            toast.error("password is required")
-        }else if(confirmpassword === " "){
-            toast.error("confirm password is required")
-        }else{
-            localStorage.setItem("token", "qwefhtnhjtdwert")
-            localStorage.setItem('fullname', fullname)
-            localStorage.setItem('email', email)
-            localStorage.setItem('password', password)
-            localStorage.setItem('confirmpassword', confirmpassword)
-            toast.success("UserDetails saved!")
+
+            if(userDetails !== " "){
+                localStorage.setItem("token", "qwefhtnhjtdwert")
+                localStorage.setItem('fullName', fullName)
+                localStorage.setItem('email', email)
+                localStorage.setItem('password', password)
+                localStorage.setItem('confirmPassword', confirmPassword)
+                    
+                navigate('/profile')
+            }
+
+
+
+
+
+		if(fullName.length <= 4) {
+			setError((previousError) => ({
+				...previousError,
+				fullName: false
+			}))
+		} else {
+			setError((previousError) => ({
+				...previousError,
+				fullName: true
+			}))
+		}
+	
+		if (
+			email.includes("@") &&
+			email.includes(".") &&
+			email.indexOf("@") !== 0 &&
+			email.length - email.lastIndexOf(".") >= 3
+		) {
+			setError((previousError) => ({
+				...previousError,
+				email: false
+			}))
+		} else {
+			setError((previousError) => ({
+				...previousError,
+				email: true
+			}))
+		}	
+	
+		// let password = parseInt(password)
+		if(password.length === 6 && !isNaN(password)) {
+			setError((previousError) => ({
+				...previousError,
+				password: false
+			}))
+		} else {
+			setError((previousError) => ({
+				...previousError,
+				password: true
+			}))
+		}
+
+        if(confirmPassword.length === password && !isNaN(confirmPassword)) {
+			setError((previousError) => ({
+				...previousError,
+				confirmPassword: false
+			}))
+		} else {
+			setError((previousError) => ({
+				...previousError,
+				confirmPassword: true
+			}))
+		}
+
+        if(submit && !Object.values(error).includes(false)){
             navigate('/profile')
         }
-
     }
-
   return (
     <>
     <div className="container login-container">
     <div className="login-form-1">
     <h1>Signup</h1>
         {/* <form action="" onSubmit={handleSubmit}> */}
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor='FullName'>FullName</label><br></br>
                 <input className="form-control" type='text' placeholder='Fullname' autoComplete='off' 
-                value={fullname}
-                onChange={(e) => setfullname(e.target.value)}
+                value={userDetails.fullName}
+                onChange={(e) =>
+                  setUserDetails({
+                    ...userDetails,
+                    fullName: e.target.value,
+                  })
+                }
                 name="FullName" id='FullName'/>
+                {submit && !success && (error.fullName ? (
+              <div type="invalid">
+                Please enter a valid email
+              </div>
+            ) : (
+              <div>Looks good!</div>
+            ))}
             </div>
             <div>
                 <label htmlFor='Email'>Email</label><br></br>
                 <input className="form-control"  type='text' placeholder='Email'  autoComplete='off'
-                value={email}
-                onChange={(e) => setemail(e.target.value)}
+                value={userDetails.email}
+                onChange={(e) =>
+                  setUserDetails({
+                    ...userDetails,
+                    email: e.target.value,
+                  })
+                }
                 name="Email" id='Email'/>
+                {submit && !success && (error.email ? (
+              <div type="invalid">
+                Please enter a valid email
+              </div>
+            ) : (
+              <div>Looks good!</div>
+            ))}
             </div>
             <div>
                 <label htmlFor='Password'>Password</label><br></br>
-                <input className="form-control"  type='password' placeholder='Password'  autoComplete='off' 
-                value={password}
-                onChange={(e) => setpassword(e.target.value)}
+                <input className="form-control"  type='text' placeholder='Password'  autoComplete='off' 
+                value={userDetails.password}
+                onChange={(e) =>
+                  setUserDetails({
+                    ...userDetails,
+                    password: e.target.value,
+                  })
+                }
                 name="Password" id='Password'/>
+                {submit && !success && (error.password ? (
+              <div type="invalid">
+                Please enter a valid passord
+              </div>
+            ) : (
+              <div>Looks good!</div>
+            ))}
             </div>
             <div>
                 <label htmlFor='ConfirmPassword'>Confirm Password</label><br></br>
-                <input className="form-control"  type='password' placeholder='Confirm Password'  autoComplete='off' 
-                value={confirmpassword}
-                onChange={(e) => setconfirmpassword(e.target.value)}
+                <input className="form-control"  type='text' placeholder='Confirm Password'  autoComplete='off' 
+                value={userDetails.confirmPassword}
+                onChange={(e) =>
+                  setUserDetails({
+                    ...userDetails,
+                    confirmPassword: e.target.value,
+                  })
+                }
                 name="ConfirmPassword" id='ConfirmPassword'/>
-            </div>
-            {/* <div>
-            {submit && !success && (error.confirmPassword ? (
-              <Form.Control.Feedback type="invalid">
-                Please enter a valid password.
-              </Form.Control.Feedback>
+                {submit && !success && (error.confirmPassword ? (
+              <div type="invalid">
+                Please confirm Your passord.
+              </div>
             ) : (
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <div>Looks good!</div>
             ))}
-            </div> */}
-            <button className='btn' type='submit' onClick={handleSubmit}> Submit</button>
+            </div>
+            <button className='btn' type='submit'> Submit</button>
         </form>
     </div>
     </div>
