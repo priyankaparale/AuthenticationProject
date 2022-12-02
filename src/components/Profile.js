@@ -10,7 +10,7 @@ const Profile = () => {
               <div>
                   <h4>
                     FullName :{" "}
-                    {localStorage.getItem("fullname") ? localStorage.getItem("fullname") : "NA"
+                    {localStorage.getItem("fullName") ? localStorage.getItem("fullName") : "NA"
                     }
                   </h4>
               </div>
