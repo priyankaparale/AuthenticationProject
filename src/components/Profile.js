@@ -1,6 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom' 
 
 const Profile = () => {
+
+  const navigate = useNavigate()
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+
+    if(localStorage.getItem("token") === " " ){
+      navigate('/')
+    }
+  }
 
   return (
     <>
@@ -28,7 +39,7 @@ const Profile = () => {
                     }
                   </h4>
               </div>
-              <button className='btn' type='submit'> Logout</button>
+              <button className='btn' type='submit' onSubmit={handleLogout}> Logout</button>
       </div>
     </div>
     </>

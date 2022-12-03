@@ -25,15 +25,9 @@ const App = () => {
       <div className="App">
 		<NavbarComponent />
 			<Routes>
-				<Route exact path='/AuthenticationProject' element={<SignUp1/>}/>	
-			</Routes>
-			<Routes>					
-				<Route path='/header' element={<SignUp1/>}/>
-			</Routes>
-			<Routes>					
+				<Route exact path='/' element={<SignUp1/>}/>					
+				<Route path='/header' element={<SignUp1/>}/>					
 				<Route path='/signup' element={<SignUp1/>}/>
-			</Routes>
-			<Routes>
 				<Route path='/profile' element={<Profile />}/>				
 			</Routes>
       </div>

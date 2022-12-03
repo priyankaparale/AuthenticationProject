@@ -36,31 +36,31 @@ const SignUp1 = () => {
     // }
 
     const [userDetails, setUserDetails] = useState({
-		fullName: '',		
-		email: '',
-		password: '',	
-        confirmPassword: '',	
-	})
-	const [error, setError] = useState({
-		fullName: false,
-		email: false,		
-		password: false,
-        confirmPassword: false,
-	})
-	const [submit, setSubmit] = useState(false)
-	const [success, setSuccess] = useState(false)
+      fullName: '',		
+      email: '',
+      password: '',	
+          confirmPassword: '',	
+    })
+    const [error, setError] = useState({
+      fullName: false,
+      email: false,		
+      password: false,
+          confirmPassword: false,
+    })
+    const [submit, setSubmit] = useState(false)
+    const [success, setSuccess] = useState(false)
 
-	useEffect(() => {
-		if(submit && !Object.values(error).includes(true)){
-			setSuccess(true)
-			setUserDetails({
-				fullName: '',		
-                email: '',
-                password: '',
-                confirmPassword: '',
-			})
-		}
-	}, [submit, error])
+    useEffect(() => {
+      if(submit && !Object.values(error).includes(true)){
+        setSuccess(true)
+        setUserDetails({
+          fullName: '',		
+          email: '',
+          password: '',
+          confirmPassword: '',
+        })
+      }
+    }, [submit, error])
 
     const navigate = useNavigate()
 	
@@ -71,10 +71,10 @@ const SignUp1 = () => {
 		const { fullName, email, password, confirmPassword } = userDetails
 
 
-        if(userDetails !== " "){
-            localStorage.setItem("token", "qwefhtnhjtdwert")
-            navigate('/profile')
-        }
+    if(userDetails !== " "){
+      localStorage.setItem("token", "qwefhtnhjtdwert")
+      navigate('/profile')
+    }
 
 		if(fullName.length <= 4) {
 			setError((previousError) => ({
