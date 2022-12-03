@@ -21,11 +21,11 @@ const App = () => {
         draggable
         pauseOnHover
       /> */}
-	<BrowserRouter>
+	<BrowserRouter basename="/AuthenticationProject">
       <div className="App">
 		<NavbarComponent />
 			<Routes>
-				<Route exact path='/' element={<SignUp1/>}/>	
+				<Route exact path='/AuthenticationProject' element={<SignUp1/>}/>	
 			</Routes>
 			<Routes>					
 				<Route path='/header' element={<SignUp1/>}/>
