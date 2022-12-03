@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import NavbarComponent from './components/Navbar'
 import SignUp1 from "./components/SignUp1"
 import Profile from "./components/Profile"
@@ -10,7 +10,7 @@ import Profile from "./components/Profile"
 const App = () => {
   return (
 	<>
-    <ToastContainer
+    {/* <ToastContainer
         position="top-center"
         autoClose={2000}
         hideProgressBar={false}
@@ -20,11 +20,10 @@ const App = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
 	<BrowserRouter>
       <div className="App">
 		<NavbarComponent />
-			{/* <Switch> */}
 			<Routes>
 				<Route exact path='/' element={<SignUp1/>}/>	
 			</Routes>
@@ -37,7 +36,6 @@ const App = () => {
 			<Routes>
 				<Route path='/profile' element={<Profile />}/>				
 			</Routes>
-			{/* </Switch> */}
       </div>
 	</BrowserRouter>
 	</>
